@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<!-- Generato da sim/gen_sdf.py: non modificare a mano -->
+<sdf version="1.9">
+  <model name="naiade">
+    <pose>0 0 0.30 0 0 0</pose>
+    <link name="base_link">
+      <inertial><pose>0.06 0.0 -0.05 0 0 0</pose><mass>21.8</mass>
+        <inertia><ixx>4.6</ixx><ixy>0</ixy><ixz>0</ixz><iyy>2.8</iyy><iyz>0</iyz><izz>7.4</izz></inertia></inertial>
+      <collision name='skid_l'><pose>-0.04 0.21 -0.28 0 0 0</pose><geometry><box><size>0.68 0.024 0.024</size></box></geometry></collision><collision name='skid_r'><pose>-0.04 -0.21 -0.28 0 0 0</pose><geometry><box><size>0.68 0.024 0.024</size></box></geometry></collision>
+      <collision name='fuselage'><pose>0.07 0 0 0 1.5708 0</pose><geometry><cylinder><radius>0.11</radius><length>1.6</length></cylinder></geometry></collision>
+      <visual name='body'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/body.stl</uri></mesh></geometry><material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual>
+      <visual name='endplates'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/endplates.stl</uri></mesh></geometry><material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual>
+      <visual name='fairing'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/fairing.stl</uri></mesh></geometry><material><ambient>0.85 0.68 0.0 1</ambient><diffuse>0.85 0.68 0.0 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual>
+      <visual name='skids'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/skids.stl</uri></mesh></geometry><material><ambient>0.6 0.62 0.65 1</ambient><diffuse>0.6 0.62 0.65 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual>
+      <visual name='sensors'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/sensors.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual>
+      <sensor name="imu_sensor" type="imu">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.0003394</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.0003394</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.0003394</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.004</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.004</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.004</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+<sensor name="air_pressure_sensor" type="air_pressure">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <pressure>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+      </sensor>
+<sensor name="magnetometer_sensor" type="magnetometer">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <magnetometer>
+          <!-- 3mgauss RMS = 3e-7 tesla, noise modeled after IIS2MDC -->
+          <!-- Noise is in the units of the field: tesla with use_units_gauss=false (PX4 gz_bridge server.config),
+               gauss with the gz-sim default -->
+          <x>
+            <noise type="gaussian">
+              <stddev>3e-7</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <stddev>3e-7</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <stddev>3e-7</stddev>
+            </noise>
+          </z>
+        </magnetometer>
+      </sensor>
+<sensor name="navsat_sensor" type="navsat">
+        <gz_frame_id>base_link</gz_frame_id>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+      </sensor>
+    </link>
+    <include merge="true">
+      <uri>model://airspeed</uri>
+      <pose>0. 0. 0. 0. 0. 0.</pose>
+    </include>
+    <joint name='airspeed_joint' type='fixed'>
+      <parent>base_link</parent>
+      <child>airspeed_link</child>
+      <pose relative_to="base_link">-0 0 0 0 0 0</pose>
+    </joint>
+    <link name='front_wing'><pose>0.26 0 -0.065 0 0 0</pose><inertial><mass>1.5</mass><inertia><ixx>1.1</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.18</iyy><iyz>0</iyz><izz>1.2</izz></inertia></inertial>
+      <collision name='front_wing_coll'><geometry><box><size>0.04 3.0 0.28</size></box></geometry></collision>
+      <visual name='front_wing'><pose>0 0 0 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/front_wing.stl</uri></mesh></geometry><material><ambient>0.85 0.68 0.0 1</ambient><diffuse>0.85 0.68 0.0 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual><visual name='front_nacelles'><pose>0 0 0 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/front_nacelles.stl</uri></mesh></geometry><material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='front_wing_joint' type='revolute'><parent>base_link</parent><child>front_wing</child>
+      <axis><xyz>0 1 0</xyz><limit><lower>0</lower><upper>1.5708</upper></limit><dynamics><damping>2</damping></dynamics></axis></joint><link name='rotor_0'><pose relative_to='front_wing'>0 1.0 0.38 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_0'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_0.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_0_joint' type='revolute'><parent>front_wing</parent><child>rotor_0</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_1'><pose relative_to='front_wing'>0 0.4 0.38 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_1'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_1.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_1_joint' type='revolute'><parent>front_wing</parent><child>rotor_1</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_2'><pose relative_to='front_wing'>0 -0.4 0.38 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_2'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_2.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_2_joint' type='revolute'><parent>front_wing</parent><child>rotor_2</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_3'><pose relative_to='front_wing'>0 -1.0 0.38 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_3'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_3.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_3_joint' type='revolute'><parent>front_wing</parent><child>rotor_3</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rear_wing'><pose>-0.45 0 0.29 0 0 0</pose><inertial><mass>1.5</mass><inertia><ixx>1.1</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.18</iyy><iyz>0</iyz><izz>1.2</izz></inertia></inertial>
+      <collision name='rear_wing_coll'><geometry><box><size>0.04 3.0 0.28</size></box></geometry></collision>
+      <visual name='rear_wing'><pose>0 0 0 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/rear_wing.stl</uri></mesh></geometry><material><ambient>0.85 0.68 0.0 1</ambient><diffuse>0.85 0.68 0.0 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual><visual name='rear_nacelles'><pose>0 0 0 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/rear_nacelles.stl</uri></mesh></geometry><material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rear_wing_joint' type='revolute'><parent>base_link</parent><child>rear_wing</child>
+      <axis><xyz>0 1 0</xyz><limit><lower>0</lower><upper>1.5708</upper></limit><dynamics><damping>2</damping></dynamics></axis></joint><link name='rotor_4'><pose relative_to='rear_wing'>0 1.0 0.37 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_4'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_4.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_4_joint' type='revolute'><parent>rear_wing</parent><child>rotor_4</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_5'><pose relative_to='rear_wing'>0 0.4 0.37 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_5'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_5.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_5_joint' type='revolute'><parent>rear_wing</parent><child>rotor_5</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_6'><pose relative_to='rear_wing'>0 -0.4 0.37 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_6'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_6.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_6_joint' type='revolute'><parent>rear_wing</parent><child>rotor_6</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='rotor_7'><pose relative_to='rear_wing'>0 -1.0 0.37 0 0 0</pose><inertial><mass>0.03</mass><inertia><ixx>0.00025</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.00025</iyy><iyz>0</iyz><izz>0.0005</izz></inertia></inertial>
+      <visual name='prop_7'><pose>0 0 -0.025 0 -1.5708 0</pose><geometry><mesh><uri>model://naiade/meshes/prop_7.stl</uri></mesh></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='rotor_7_joint' type='revolute'><parent>rear_wing</parent><child>rotor_7</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint><link name='aileron_left'><pose relative_to='front_wing'>0 0 0 0 0 0</pose><inertial><mass>0.001</mass><inertia><ixx>0.002</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.002</iyy><iyz>0</iyz><izz>0.002</izz></inertia></inertial></link>
+    <joint name='aileron_left_joint' type='revolute'><parent>front_wing</parent><child>aileron_left</child>
+      <axis><xyz>0 1 0</xyz><limit><lower>-0.5</lower><upper>0.5</upper></limit><dynamics><damping>0.2</damping></dynamics></axis></joint><link name='aileron_right'><pose relative_to='front_wing'>0 0 0 0 0 0</pose><inertial><mass>0.001</mass><inertia><ixx>0.002</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.002</iyy><iyz>0</iyz><izz>0.002</izz></inertia></inertial></link>
+    <joint name='aileron_right_joint' type='revolute'><parent>front_wing</parent><child>aileron_right</child>
+      <axis><xyz>0 1 0</xyz><limit><lower>-0.5</lower><upper>0.5</upper></limit><dynamics><damping>0.2</damping></dynamics></axis></joint><link name='elevator'><pose relative_to='rear_wing'>0 0 0 0 0 0</pose><inertial><mass>0.001</mass><inertia><ixx>0.002</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.002</iyy><iyz>0</iyz><izz>0.002</izz></inertia></inertial></link>
+    <joint name='elevator_joint' type='revolute'><parent>rear_wing</parent><child>elevator</child>
+      <axis><xyz>0 1 0</xyz><limit><lower>-0.5</lower><upper>0.5</upper></limit><dynamics><damping>0.2</damping></dynamics></axis></joint><link name='cable_0'><pose relative_to='base_link'>-0.27 0 -0.18 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_0_joint' type='prismatic'><parent>base_link</parent><child>cable_0</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_1'><pose relative_to='cable_0'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_1_joint' type='prismatic'><parent>cable_0</parent><child>cable_1</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_2'><pose relative_to='cable_1'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_2_joint' type='prismatic'><parent>cable_1</parent><child>cable_2</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_3'><pose relative_to='cable_2'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_3_joint' type='prismatic'><parent>cable_2</parent><child>cable_3</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_4'><pose relative_to='cable_3'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_4_joint' type='prismatic'><parent>cable_3</parent><child>cable_4</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_5'><pose relative_to='cable_4'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_5_joint' type='prismatic'><parent>cable_4</parent><child>cable_5</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_6'><pose relative_to='cable_5'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_6_joint' type='prismatic'><parent>cable_5</parent><child>cable_6</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_7'><pose relative_to='cable_6'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_7_joint' type='prismatic'><parent>cable_6</parent><child>cable_7</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_8'><pose relative_to='cable_7'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_8_joint' type='prismatic'><parent>cable_7</parent><child>cable_8</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_9'><pose relative_to='cable_8'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_9_joint' type='prismatic'><parent>cable_8</parent><child>cable_9</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_10'><pose relative_to='cable_9'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_10_joint' type='prismatic'><parent>cable_9</parent><child>cable_10</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_11'><pose relative_to='cable_10'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_11_joint' type='prismatic'><parent>cable_10</parent><child>cable_11</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_12'><pose relative_to='cable_11'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_12_joint' type='prismatic'><parent>cable_11</parent><child>cable_12</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_13'><pose relative_to='cable_12'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_13_joint' type='prismatic'><parent>cable_12</parent><child>cable_13</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_14'><pose relative_to='cable_13'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_14_joint' type='prismatic'><parent>cable_13</parent><child>cable_14</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_15'><pose relative_to='cable_14'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_15_joint' type='prismatic'><parent>cable_14</parent><child>cable_15</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_16'><pose relative_to='cable_15'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_16_joint' type='prismatic'><parent>cable_15</parent><child>cable_16</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_17'><pose relative_to='cable_16'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_17_joint' type='prismatic'><parent>cable_16</parent><child>cable_17</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_18'><pose relative_to='cable_17'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_18_joint' type='prismatic'><parent>cable_17</parent><child>cable_18</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_19'><pose relative_to='cable_18'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_19_joint' type='prismatic'><parent>cable_18</parent><child>cable_19</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_20'><pose relative_to='cable_19'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_20_joint' type='prismatic'><parent>cable_19</parent><child>cable_20</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_21'><pose relative_to='cable_20'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_21_joint' type='prismatic'><parent>cable_20</parent><child>cable_21</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_22'><pose relative_to='cable_21'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_22_joint' type='prismatic'><parent>cable_21</parent><child>cable_22</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_23'><pose relative_to='cable_22'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_23_joint' type='prismatic'><parent>cable_22</parent><child>cable_23</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_24'><pose relative_to='cable_23'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_24_joint' type='prismatic'><parent>cable_23</parent><child>cable_24</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_25'><pose relative_to='cable_24'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_25_joint' type='prismatic'><parent>cable_24</parent><child>cable_25</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_26'><pose relative_to='cable_25'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_26_joint' type='prismatic'><parent>cable_25</parent><child>cable_26</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_27'><pose relative_to='cable_26'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_27_joint' type='prismatic'><parent>cable_26</parent><child>cable_27</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_28'><pose relative_to='cable_27'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_28_joint' type='prismatic'><parent>cable_27</parent><child>cable_28</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_29'><pose relative_to='cable_28'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_29_joint' type='prismatic'><parent>cable_28</parent><child>cable_29</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_30'><pose relative_to='cable_29'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_30_joint' type='prismatic'><parent>cable_29</parent><child>cable_30</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_31'><pose relative_to='cable_30'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_31_joint' type='prismatic'><parent>cable_30</parent><child>cable_31</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_32'><pose relative_to='cable_31'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_32_joint' type='prismatic'><parent>cable_31</parent><child>cable_32</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='cable_33'><pose relative_to='cable_32'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='cable'><pose>0 0 0.15 0 0 0</pose><geometry><cylinder><radius>0.002</radius><length>0.3</length></cylinder></geometry><material><ambient>0.06 0.07 0.08 1</ambient><diffuse>0.06 0.07 0.08 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='cable_33_joint' type='prismatic'><parent>cable_32</parent><child>cable_33</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.3</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='probe'><pose relative_to='base_link'>0 0 0.36 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='probe'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/probe.stl</uri></mesh></geometry><material><ambient>0.9 0.9 0.9 1</ambient><diffuse>0.9 0.9 0.9 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='probe_joint' type='prismatic'><parent>base_link</parent><child>probe</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-10.2</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='carousel'><pose relative_to='base_link'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='carousel'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/carousel.stl</uri></mesh></geometry><material><ambient>0.3 0.6 0.85 1</ambient><diffuse>0.3 0.6 0.85 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='carousel_joint' type='prismatic'><parent>base_link</parent><child>carousel</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.6</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint><link name='battery'><pose relative_to='base_link'>0 0 0 0 0 0</pose><inertial><mass>0.01</mass><inertia><ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz></inertia></inertial><gravity>0</gravity><visual name='battery'><pose>0 0 0 0 0 0</pose><geometry><mesh><uri>model://naiade/meshes/battery.stl</uri></mesh></geometry><material><ambient>0.75 0.4 0.1 1</ambient><diffuse>0.75 0.4 0.1 1</diffuse><specular>0.2 0.2 0.2 1</specular></material></visual></link>
+    <joint name='battery_joint' type='prismatic'><parent>base_link</parent><child>battery</child>
+      <axis><xyz>0 0 1</xyz><limit><lower>-0.6</lower><upper>0</upper></limit><dynamics><damping>0.6</damping></dynamics></axis></joint>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>front_wing_joint</joint_name><sub_topic>servo_3</sub_topic><p_gain>200</p_gain><i_gain>0</i_gain><d_gain>10.0</d_gain>
+      <cmd_max>200</cmd_max><cmd_min>-200</cmd_min></plugin><plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.035</a0><cla>4.75</cla><cda>0.6</cda><cma>0</cma>
+      <alpha_stall>0.25</alpha_stall><cla_stall>-0.9</cla_stall><cda_stall>0.6</cda_stall><cma_stall>0</cma_stall>
+      <cp>0 0.75 0.07</cp><area>0.42000000000000004</area><air_density>1.2041</air_density>
+      <forward>0 0 1</forward><upward>-1 0 0</upward><link_name>front_wing</link_name><control_joint_name>aileron_left_joint</control_joint_name><control_joint_rad_to_cl>-1.0</control_joint_rad_to_cl></plugin><plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.035</a0><cla>4.75</cla><cda>0.6</cda><cma>0</cma>
+      <alpha_stall>0.25</alpha_stall><cla_stall>-0.9</cla_stall><cda_stall>0.6</cda_stall><cma_stall>0</cma_stall>
+      <cp>0 -0.75 0.07</cp><area>0.42000000000000004</area><air_density>1.2041</air_density>
+      <forward>0 0 1</forward><upward>-1 0 0</upward><link_name>front_wing</link_name><control_joint_name>aileron_right_joint</control_joint_name><control_joint_rad_to_cl>-1.0</control_joint_rad_to_cl></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_0_joint</jointName><linkName>rotor_0</linkName><turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>0</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_1_joint</jointName><linkName>rotor_1</linkName><turningDirection>cw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>1</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_2_joint</jointName><linkName>rotor_2</linkName><turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>2</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_3_joint</jointName><linkName>rotor_3</linkName><turningDirection>cw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>3</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>rear_wing_joint</joint_name><sub_topic>servo_4</sub_topic><p_gain>200</p_gain><i_gain>0</i_gain><d_gain>10.0</d_gain>
+      <cmd_max>200</cmd_max><cmd_min>-200</cmd_min></plugin><plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.035</a0><cla>4.75</cla><cda>0.6</cda><cma>0</cma>
+      <alpha_stall>0.25</alpha_stall><cla_stall>-0.9</cla_stall><cda_stall>0.6</cda_stall><cma_stall>0</cma_stall>
+      <cp>0 0.75 0.07</cp><area>0.42000000000000004</area><air_density>1.2041</air_density>
+      <forward>0 0 1</forward><upward>-1 0 0</upward><link_name>rear_wing</link_name><control_joint_name>elevator_joint</control_joint_name><control_joint_rad_to_cl>-0.6</control_joint_rad_to_cl></plugin><plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.035</a0><cla>4.75</cla><cda>0.6</cda><cma>0</cma>
+      <alpha_stall>0.25</alpha_stall><cla_stall>-0.9</cla_stall><cda_stall>0.6</cda_stall><cma_stall>0</cma_stall>
+      <cp>0 -0.75 0.07</cp><area>0.42000000000000004</area><air_density>1.2041</air_density>
+      <forward>0 0 1</forward><upward>-1 0 0</upward><link_name>rear_wing</link_name><control_joint_name>elevator_joint</control_joint_name><control_joint_rad_to_cl>-0.6</control_joint_rad_to_cl></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_4_joint</jointName><linkName>rotor_4</linkName><turningDirection>cw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>4</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_5_joint</jointName><linkName>rotor_5</linkName><turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>5</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_6_joint</jointName><linkName>rotor_6</linkName><turningDirection>cw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>6</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>rotor_7_joint</jointName><linkName>rotor_7</linkName><turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.03</timeConstantUp><timeConstantDown>0.05</timeConstantDown><maxRotVelocity>800</maxRotVelocity>
+      <motorConstant>0.000112</motorConstant><momentConstant>0.05</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic><motorNumber>7</motorNumber>
+      <rotorDragCoefficient>8.06e-05</rotorDragCoefficient><rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim><motorType>velocity</motorType></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>aileron_left_joint</joint_name><sub_topic>servo_0</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0.5</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>aileron_right_joint</joint_name><sub_topic>servo_1</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0.5</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>elevator_joint</joint_name><sub_topic>servo_2</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0.5</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_0_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_1_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_2_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_3_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_4_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_5_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_6_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_7_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_8_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_9_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_10_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_11_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_12_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_13_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_14_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_15_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_16_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_17_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_18_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_19_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_20_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_21_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_22_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_23_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_24_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_25_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_26_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_27_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_28_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_29_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_30_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_31_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_32_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>cable_33_joint</joint_name><sub_topic>winch_cable</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>probe_joint</joint_name><sub_topic>winch</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>carousel_joint</joint_name><sub_topic>carousel</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>battery_joint</joint_name><sub_topic>battery</sub_topic><p_gain>10</p_gain><i_gain>0</i_gain><d_gain>0</d_gain>
+      <cmd_max>10</cmd_max><cmd_min>-10</cmd_min></plugin><plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0</a0><cla>4.75</cla><cda>0.6</cda><cma>0</cma>
+      <alpha_stall>0.25</alpha_stall><cla_stall>-0.9</cla_stall><cda_stall>0.6</cda_stall><cma_stall>0</cma_stall>
+      <cp>-0.55 0 0.15</cp><area>0.08</area><air_density>1.2041</air_density>
+      <forward>1 0 0</forward><upward>0 1 0</upward><link_name>base_link</link_name></plugin>
+  </model>
+</sdf>

@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <!-- Base solare NEREIDE (slide 9). Piano di atterraggio a z=0.50.
+       Modello non statico solo per elevatore e carosello campioni: la base e' fissata al mondo. -->
+  <model name="docking_station">
+    <static>false</static>
+
+    <joint name="fixed_to_world" type="fixed">
+      <parent>world</parent>
+      <child>base</child>
+    </joint>
+
+    <link name="base">
+      <inertial>
+        <pose>0 0 0.25 0 0 0</pose>
+        <mass>200</mass>
+        <inertia><ixx>36</ixx><iyy>70</iyy><izz>100</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+
+      <!-- piano di atterraggio: tutto pieno, anche sui portelli -->
+      <collision name="platform_collision">
+        <pose>0 0 0.25 0 0 0</pose>
+        <geometry><box><size>2.0 1.4 0.50</size></box></geometry>
+      </collision>
+
+      <!-- cassone principale semitrasparente per vedere frigo, magazzino ed elevatore -->
+      <visual name="body">
+        <pose>0 0 0.24 0 0 0</pose>
+        <geometry><box><size>2.0 1.4 0.48</size></box></geometry>
+        <material><ambient>0.92 0.92 0.88 1</ambient><diffuse>0.92 0.92 0.88 1</diffuse></material>
+        <transparency>0.6</transparency>
+      </visual>
+      <visual name="platform">
+        <pose>0 0 0.49 0 0 0</pose>
+        <geometry><box><size>2.0 1.4 0.02</size></box></geometry>
+        <material><ambient>0.12 0.18 0.26 1</ambient><diffuse>0.12 0.18 0.26 1</diffuse></material>
+      </visual>
+      <visual name="hatch_samples">
+        <pose>-0.10 0 0.5008 0 0 0</pose>
+        <geometry><box><size>0.14 0.14 0.0015</size></box></geometry>
+        <material><ambient>0.2 0.75 0.8 1</ambient><diffuse>0.2 0.75 0.8 1</diffuse></material>
+        <transparency>0.5</transparency>
+      </visual>
+      <visual name="hatch_battery">
+        <pose>0.13 0 0.5008 0 0 0</pose>
+        <geometry><box><size>0.24 0.16 0.0015</size></box></geometry>
+        <material><ambient>0.95 0.5 0.15 1</ambient><diffuse>0.95 0.5 0.15 1</diffuse></material>
+        <transparency>0.5</transparency>
+      </visual>
+
+      <!-- B: guide a cono appena fuori dalla linea dei pattini (y=+-0.21) -->
+      <visual name="cone_rl">
+        <pose>-0.30 0.27 0.54 0 0 0</pose>
+        <geometry><cone><radius>0.04</radius><length>0.08</length></cone></geometry>
+        <material><ambient>1 0.65 0 1</ambient><diffuse>1 0.65 0 1</diffuse></material>
+      </visual>
+      <visual name="cone_rr">
+        <pose>-0.30 -0.27 0.54 0 0 0</pose>
+        <geometry><cone><radius>0.04</radius><length>0.08</length></cone></geometry>
+        <material><ambient>1 0.65 0 1</ambient><diffuse>1 0.65 0 1</diffuse></material>
+      </visual>
+      <visual name="cone_fl">
+        <pose>0.22 0.27 0.54 0 0 0</pose>
+        <geometry><cone><radius>0.04</radius><length>0.08</length></cone></geometry>
+        <material><ambient>1 0.65 0 1</ambient><diffuse>1 0.65 0 1</diffuse></material>
+      </visual>
+      <visual name="cone_fr">
+        <pose>0.22 -0.27 0.54 0 0 0</pose>
+        <geometry><cone><radius>0.04</radius><length>0.08</length></cone></geometry>
+        <material><ambient>1 0.65 0 1</ambient><diffuse>1 0.65 0 1</diffuse></material>
+      </visual>
+
+      <!-- C: frigo campioni 4 C sotto il portello campioni -->
+      <visual name="fridge">
+        <pose>-0.22 0 0.18 0 0 0</pose>
+        <geometry><box><size>0.50 0.50 0.32</size></box></geometry>
+        <material><ambient>0.6 0.85 1 1</ambient><diffuse>0.6 0.85 1 1</diffuse></material>
+        <transparency>0.5</transparency>
+      </visual>
+      <visual name="flask_1">
+        <pose>-0.36 -0.15 0.09 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.10</length></cylinder></geometry>
+        <material><ambient>0.2 0.45 0.9 1</ambient><diffuse>0.2 0.45 0.9 1</diffuse></material>
+      </visual>
+      <visual name="flask_2">
+        <pose>-0.36 -0.05 0.09 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.10</length></cylinder></geometry>
+        <material><ambient>0.2 0.45 0.9 1</ambient><diffuse>0.2 0.45 0.9 1</diffuse></material>
+      </visual>
+      <visual name="flask_3">
+        <pose>-0.36 0.05 0.09 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.10</length></cylinder></geometry>
+        <material><ambient>0.2 0.45 0.9 1</ambient><diffuse>0.2 0.45 0.9 1</diffuse></material>
+      </visual>
+      <visual name="flask_4">
+        <pose>-0.36 0.15 0.09 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.10</length></cylinder></geometry>
+        <material><ambient>0.2 0.45 0.9 1</ambient><diffuse>0.2 0.45 0.9 1</diffuse></material>
+      </visual>
+
+      <!-- D: magazzino 3 batterie accanto al pozzo dell'elevatore -->
+      <visual name="magazine_shelf">
+        <pose>0.55 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.30 0.46 0.02</size></box></geometry>
+        <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+      </visual>
+      <visual name="battery_1">
+        <pose>0.55 -0.14 0.085 0 0 0</pose>
+        <geometry><box><size>0.20 0.10 0.07</size></box></geometry>
+        <material><ambient>1 0.5 0.1 1</ambient><diffuse>1 0.5 0.1 1</diffuse></material>
+      </visual>
+      <visual name="battery_2">
+        <pose>0.55 0 0.085 0 0 0</pose>
+        <geometry><box><size>0.20 0.10 0.07</size></box></geometry>
+        <material><ambient>1 0.5 0.1 1</ambient><diffuse>1 0.5 0.1 1</diffuse></material>
+      </visual>
+      <visual name="battery_3">
+        <pose>0.55 0.14 0.085 0 0 0</pose>
+        <geometry><box><size>0.20 0.10 0.07</size></box></geometry>
+        <material><ambient>1 0.5 0.1 1</ambient><diffuse>1 0.5 0.1 1</diffuse></material>
+      </visual>
+
+      <!-- E: guida verticale dell'elevatore -->
+      <visual name="elevator_rail">
+        <pose>0.13 0.09 0.24 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.48</length></cylinder></geometry>
+        <material><ambient>0.55 0.55 0.58 1</ambient><diffuse>0.55 0.55 0.58 1</diffuse></material>
+      </visual>
+
+      <!-- F: locale tecnico e accumulo, lato -y, staccato dal piano: le ali (3 m) sporgono oltre la piattaforma -->
+      <visual name="tech_room">
+        <pose>0 -2.4000 0.45 0 0 0</pose>
+        <geometry><box><size>1.6 0.9 0.9</size></box></geometry>
+        <material><ambient>0.93 0.86 0.72 1</ambient><diffuse>0.93 0.86 0.72 1</diffuse></material>
+      </visual>
+      <visual name="tech_room_door">
+        <pose>0.35 -2.8530 0.36 0 0 0</pose>
+        <geometry><box><size>0.45 0.01 0.70</size></box></geometry>
+        <material><ambient>0.35 0.5 0.6 1</ambient><diffuse>0.35 0.5 0.6 1</diffuse></material>
+      </visual>
+      <collision name="tech_room_collision">
+        <pose>0 -2.4000 0.45 0 0 0</pose>
+        <geometry><box><size>1.6 0.9 0.9</size></box></geometry>
+      </collision>
+
+      <!-- A: pannello solare inclinato verso sud (-y) -->
+      <visual name="solar_frame">
+        <pose>0 -2.4000 1.12 0.35 0 0</pose>
+        <geometry><box><size>1.90 1.15 0.03</size></box></geometry>
+        <material><ambient>0.85 0.87 0.9 1</ambient><diffuse>0.85 0.87 0.9 1</diffuse></material>
+      </visual>
+      <visual name="solar_cells">
+        <pose>0 -2.4034 1.1294 0.35 0 0</pose>
+        <geometry><box><size>1.80 1.05 0.03</size></box></geometry>
+        <material><ambient>0.05 0.12 0.45 1</ambient><diffuse>0.05 0.12 0.45 1</diffuse><specular>0.4 0.4 0.5 1</specular></material>
+      </visual>
+      <visual name="solar_post_l">
+        <pose>0.85 -2.0300 1.07 0 0 0</pose>
+        <geometry><cylinder><radius>0.02</radius><length>0.34</length></cylinder></geometry>
+        <material><ambient>0.6 0.6 0.62 1</ambient><diffuse>0.6 0.6 0.62 1</diffuse></material>
+      </visual>
+      <visual name="solar_post_r">
+        <pose>-0.85 -2.0300 1.07 0 0 0</pose>
+        <geometry><cylinder><radius>0.02</radius><length>0.34</length></cylinder></geometry>
+        <material><ambient>0.6 0.6 0.62 1</ambient><diffuse>0.6 0.6 0.62 1</diffuse></material>
+      </visual>
+    </link>
+
+    <!-- E: elevatore batteria, 0 = a filo del piano -->
+    <link name="elevator">
+      <pose>0.13 0 0.49 0 0 0</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia><ixx>0.00167</ixx><iyy>0.00407</iyy><izz>0.00567</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+      <visual name="plate">
+        <geometry><box><size>0.22 0.14 0.02</size></box></geometry>
+        <material><ambient>0.6 0.6 0.62 1</ambient><diffuse>0.6 0.6 0.62 1</diffuse></material>
+      </visual>
+    </link>
+    <joint name="elevator_joint" type="prismatic">
+      <parent>base</parent>
+      <child>elevator</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-0.45</lower><upper>0</upper><effort>200</effort><velocity>1</velocity></limit>
+        <dynamics><damping>2</damping></dynamics>
+      </axis>
+    </joint>
+
+    <!-- carosello campioni verso il frigo -->
+    <link name="sample_lift">
+      <pose>-0.10 0 0.495 0 0 0</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia><ixx>0.00042</ixx><iyy>0.00042</iyy><izz>0.00083</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+      <visual name="plate">
+        <geometry><box><size>0.10 0.10 0.01</size></box></geometry>
+        <material><ambient>0.55 0.85 1 1</ambient><diffuse>0.55 0.85 1 1</diffuse></material>
+      </visual>
+    </link>
+    <joint name="sample_lift_joint" type="prismatic">
+      <parent>base</parent>
+      <child>sample_lift</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-0.45</lower><upper>0</upper><effort>100</effort><velocity>1</velocity></limit>
+        <dynamics><damping>1</damping></dynamics>
+      </axis>
+    </joint>
+
+    <!-- wn = sqrt(kp/m) = 20 rad/s, kd ~ smorzamento critico -->
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>elevator_joint</joint_name>
+      <topic>/model/docking_station/elevator</topic>
+      <p_gain>400</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>40</d_gain>
+      <cmd_max>100</cmd_max>
+      <cmd_min>-100</cmd_min>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>sample_lift_joint</joint_name>
+      <topic>/model/docking_station/sample_lift</topic>
+      <p_gain>200</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>20</d_gain>
+      <cmd_max>50</cmd_max>
+      <cmd_min>-50</cmd_min>
+    </plugin>
+  </model>
+</sdf>

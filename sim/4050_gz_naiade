@@ -1,0 +1,169 @@
+#!/bin/sh
+#
+# @name NAIADE tandem tilt-wing
+#
+# @type VTOL Tiltrotor
+#
+# Generato da sim/gen_airframe: 8 motori su due ali basculanti (servo tilt 0 = ala anteriore, 1 = posteriore).
+
+. ${R}etc/init.d/rc.vtol_defaults
+
+PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
+PX4_GZ_WORLD=${PX4_GZ_WORLD:=default}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=naiade}
+
+param set-default SIM_GZ_EN 1
+param set-default SENS_EN_ARSPDSIM 1
+param set-default FD_ACT_EN 0
+param set-default MAV_TYPE 21
+param set-default COM_PREARM_MODE 2
+param set-default COM_RC_IN_MODE 1
+# bozza senza stazione di terra
+param set-default NAV_DLL_ACT 0
+
+param set-default CA_AIRFRAME 3
+param set-default CA_ROTOR_COUNT 8
+param set-default CA_ROTOR0_PX 0.225
+param set-default CA_ROTOR0_PY -1.000
+param set-default CA_ROTOR0_PZ 0.015
+param set-default CA_ROTOR0_KM 0.05
+param set-default CA_ROTOR0_TILT 1
+param set-default CA_ROTOR1_PX 0.225
+param set-default CA_ROTOR1_PY -0.400
+param set-default CA_ROTOR1_PZ 0.015
+param set-default CA_ROTOR1_KM -0.05
+param set-default CA_ROTOR1_TILT 1
+param set-default CA_ROTOR2_PX 0.225
+param set-default CA_ROTOR2_PY 0.400
+param set-default CA_ROTOR2_PZ 0.015
+param set-default CA_ROTOR2_KM 0.05
+param set-default CA_ROTOR2_TILT 1
+param set-default CA_ROTOR3_PX 0.225
+param set-default CA_ROTOR3_PY 1.000
+param set-default CA_ROTOR3_PZ 0.015
+param set-default CA_ROTOR3_KM -0.05
+param set-default CA_ROTOR3_TILT 1
+param set-default CA_ROTOR4_PX -0.485
+param set-default CA_ROTOR4_PY -1.000
+param set-default CA_ROTOR4_PZ -0.34
+param set-default CA_ROTOR4_KM -0.05
+param set-default CA_ROTOR4_TILT 2
+param set-default CA_ROTOR5_PX -0.485
+param set-default CA_ROTOR5_PY -0.400
+param set-default CA_ROTOR5_PZ -0.34
+param set-default CA_ROTOR5_KM 0.05
+param set-default CA_ROTOR5_TILT 2
+param set-default CA_ROTOR6_PX -0.485
+param set-default CA_ROTOR6_PY 0.400
+param set-default CA_ROTOR6_PZ -0.34
+param set-default CA_ROTOR6_KM -0.05
+param set-default CA_ROTOR6_TILT 2
+param set-default CA_ROTOR7_PX -0.485
+param set-default CA_ROTOR7_PY 1.000
+param set-default CA_ROTOR7_PZ -0.34
+param set-default CA_ROTOR7_KM 0.05
+param set-default CA_ROTOR7_TILT 2
+param set-default SIM_GZ_EC_FUNC1 101
+param set-default SIM_GZ_EC_MIN1 10
+param set-default SIM_GZ_EC_MAX1 800
+param set-default SIM_GZ_EC_FUNC2 102
+param set-default SIM_GZ_EC_MIN2 10
+param set-default SIM_GZ_EC_MAX2 800
+param set-default SIM_GZ_EC_FUNC3 103
+param set-default SIM_GZ_EC_MIN3 10
+param set-default SIM_GZ_EC_MAX3 800
+param set-default SIM_GZ_EC_FUNC4 104
+param set-default SIM_GZ_EC_MIN4 10
+param set-default SIM_GZ_EC_MAX4 800
+param set-default SIM_GZ_EC_FUNC5 105
+param set-default SIM_GZ_EC_MIN5 10
+param set-default SIM_GZ_EC_MAX5 800
+param set-default SIM_GZ_EC_FUNC6 106
+param set-default SIM_GZ_EC_MIN6 10
+param set-default SIM_GZ_EC_MAX6 800
+param set-default SIM_GZ_EC_FUNC7 107
+param set-default SIM_GZ_EC_MIN7 10
+param set-default SIM_GZ_EC_MAX7 800
+param set-default SIM_GZ_EC_FUNC8 108
+param set-default SIM_GZ_EC_MIN8 10
+param set-default SIM_GZ_EC_MAX8 800
+
+# tilt: 0° = hover, 90° = crociera, solo transizione (niente imbardata via tilt: le ali sono simmetriche)
+param set-default CA_SV_TL_COUNT 2
+param set-default CA_SV_TL0_MINA 0
+param set-default CA_SV_TL0_MAXA 90
+param set-default CA_SV_TL0_TD 0
+param set-default CA_SV_TL0_CT 0
+param set-default CA_SV_TL1_MINA 0
+param set-default CA_SV_TL1_MAXA 90
+param set-default CA_SV_TL1_TD 0
+param set-default CA_SV_TL1_CT 0
+
+param set-default CA_SV_CS_COUNT 3
+param set-default CA_SV_CS0_TYPE 1
+param set-default CA_SV_CS0_TRQ_R -0.5
+param set-default CA_SV_CS1_TYPE 2
+param set-default CA_SV_CS1_TRQ_R 0.5
+param set-default CA_SV_CS2_TYPE 3
+param set-default CA_SV_CS2_TRQ_P 1
+
+param set-default SIM_GZ_SV_FUNC1 201
+param set-default SIM_GZ_SV_FUNC2 202
+param set-default SIM_GZ_SV_FUNC3 203
+param set-default SIM_GZ_SV_FUNC4 204
+param set-default SIM_GZ_SV_FUNC5 205
+param set-default SIM_GZ_SV_MINA4 0
+param set-default SIM_GZ_SV_MAXA4 90
+param set-default SIM_GZ_SV_MINA5 0
+param set-default SIM_GZ_SV_MAXA5 90
+
+# 25 kg (slide 4): carico alare ~146 N/m2 -> crociera 19 m/s (~68 km/h: virate e frenate più corte), stallo ~14 m/s
+param set-default FW_AIRSPD_MIN 16
+param set-default FW_AIRSPD_TRIM 19
+param set-default FW_AIRSPD_MAX 30
+param set-default FW_AIRSPD_STALL 14
+
+
+param set-default VT_TYPE 1
+param set-default VT_FWD_THRUST_EN 0
+param set-default VT_FWD_THRUST_SC 0.6
+param set-default VT_B_TRANS_DUR 6
+
+param set-default FW_THR_TRIM 0.3
+param set-default FW_THR_MIN 0.05
+param set-default FW_THR_MAX 0.8
+param set-default FW_PSP_OFF 2
+param set-default FW_P_LIM_MIN -15
+param set-default NPFG_PERIOD 10
+
+param set-default MC_AIRMODE 1
+param set-default MC_YAWRATE_P 0.3
+param set-default MC_YAWRATE_I 0.1
+param set-default MPC_THR_HOVER 0.7
+param set-default MIS_TAKEOFF_ALT 20
+
+# inerzia alta (apertura 3 m): servono guadagni di rate più alti del default quadricottero
+param set-default MC_ROLLRATE_P 0.5
+param set-default MC_ROLLRATE_I 0.25
+param set-default MC_ROLLRATE_D 0.008
+param set-default MC_PITCHRATE_P 0.5
+param set-default MC_PITCHRATE_I 0.25
+param set-default MC_PITCHRATE_D 0.008
+param set-default MC_ROLL_P 4.5
+param set-default MC_PITCH_P 4.5
+
+# tilt-wing: l'incidenza dell'ala è 90° - tilt, sotto i ~14° di stallo solo oltre ~76° di tilt.
+# A 54° (default 0.6) l'ala è stallata, la resistenza ferma il drone a ~11 m/s e scatta il timeout.
+param set-default VT_TILT_TRANS 0.95
+param set-default VT_F_TRANS_DUR 10
+param set-default VT_F_TR_OL_TM 12
+param set-default VT_ARSP_TRANS 15
+param set-default VT_ARSP_BLEND 11
+param set-default VT_TRANS_P2_DUR 2
+param set-default FW_P_LIM_MAX 20
+# ritorno in hover da tilt-wing (patch PX4 VT_BT_TW_KEEP): motori e controllo MC attivi, ali che ruotano lentamente
+param set-default VT_BT_TW_KEEP 1
+param set-default VT_BT_TILT_DUR 5
+param set-default VT_B_DEC_MSS 3
+# yaw fisso in hover: col default VTOL (4, muso verso il waypoint) sopra il waypoint la direzione non è definita e ruota su sé stesso
+param set-default MPC_YAW_MODE 5

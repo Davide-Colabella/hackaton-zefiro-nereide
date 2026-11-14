@@ -1,0 +1,30 @@
+{
+  "log": "14_28_38.ulg",
+  "ipotesi": {
+    "spinta": "T = 1.12e-4 w^2, w = 10 + 790 u",
+    "potenza": "P = T^1.5/sqrt(2 rho A) / FoM / (eta_motore eta_esc), rho 1.225, A pi 0.225^2, FoM 0.7, eta 0.92*0.95",
+    "energia_utile_Wh": 1104.0
+  },
+  "hover": {
+    "durata_s": 44.4,
+    "spinta_tot_media_N": 245.4,
+    "potenza_media_W": 3778.0
+  },
+  "MC": {
+    "durata_s": 173.7,
+    "spinta_tot_media_N": 242.0,
+    "potenza_media_W": 3781.0
+  },
+  "transizione": {
+    "durata_s": 36.1,
+    "spinta_tot_media_N": 174.7,
+    "potenza_media_W": 2720.0
+  },
+  "FW": {
+    "durata_s": 29.4,
+    "spinta_tot_media_N": 43.9,
+    "potenza_media_W": 313.0,
+    "nota": "stima da teoria impulsiva (valida solo in hover): indicativa, non e' la potenza di crociera"
+  },
+  "autonomia_hover_min": 17.5
+}

@@ -1,0 +1,19 @@
+{
+  "log": "12_09_52.ulg",
+  "ipotesi": {
+    "spinta": "T = 1.12e-4 w^2, w = 10 + 690 u",
+    "potenza": "P = T^1.5/sqrt(2 rho A) / FoM / (eta_motore eta_esc), rho 1.225, A pi 0.225^2, FoM 0.7, eta 0.92*0.95",
+    "energia_utile_Wh": 1104.0
+  },
+  "hover": {
+    "durata_s": 9.8,
+    "spinta_tot_media_N": 178.2,
+    "potenza_media_W": 2242.0
+  },
+  "MC": {
+    "durata_s": 25.9,
+    "spinta_tot_media_N": 160.1,
+    "potenza_media_W": 1999.0
+  },
+  "autonomia_hover_min": 29.5
+}

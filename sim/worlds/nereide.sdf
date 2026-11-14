@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.9">
+  <!-- Mondo demo NEREIDE: base solare sul depuratore (origine), lago a x=250 -->
+  <world name="nereide">
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+    <scene>
+      <grid>false</grid>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.55 0.75 0.95 1</background>
+      <shadows>true</shadows>
+      <sky></sky>
+    </scene>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>2000 2000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>2000 2000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.3 0.6 0.2 1</ambient>
+            <diffuse>0.35 0.65 0.25 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <self_collide>false</self_collide>
+    </model>
+    <light name="sunUTC" type="directional">
+      <pose>0 0 500 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0.3 0.5 -0.8</direction>
+      <diffuse>1 0.97 0.9 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <attenuation>
+        <range>4000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+    </light>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>45.3244</latitude_deg>
+      <longitude_deg>7.8987</longitude_deg>
+      <elevation>488</elevation>
+    </spherical_coordinates>
+
+    <include>
+      <uri>model://docking_station</uri>
+      <name>docking_station</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <model name='settling_tank_1'>
+      <static>true</static>
+      <pose>-30 22 0 0 0 0</pose>
+      <link name="link">
+        <visual name="wall"><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry><material><ambient>0.62 0.63 0.65 1</ambient><diffuse>0.62 0.63 0.65 1</diffuse></material></visual><collision name='c_wall'><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry></collision>
+        <visual name="water"><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry><material><ambient>0.15 0.6 0.55 1</ambient><diffuse>0.15 0.6 0.55 1</diffuse></material></visual><collision name='c_water'><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry></collision>
+        <visual name="bridge"><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry><material><ambient>0.9 0.75 0.2 1</ambient><diffuse>0.9 0.75 0.2 1</diffuse></material></visual><collision name='c_bridge'><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='settling_tank_2'>
+      <static>true</static>
+      <pose>-30 -24 0 0 0 0</pose>
+      <link name="link">
+        <visual name="wall"><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry><material><ambient>0.62 0.63 0.65 1</ambient><diffuse>0.62 0.63 0.65 1</diffuse></material></visual><collision name='c_wall'><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry></collision>
+        <visual name="water"><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry><material><ambient>0.15 0.6 0.55 1</ambient><diffuse>0.15 0.6 0.55 1</diffuse></material></visual><collision name='c_water'><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry></collision>
+        <visual name="bridge"><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry><material><ambient>0.9 0.75 0.2 1</ambient><diffuse>0.9 0.75 0.2 1</diffuse></material></visual><collision name='c_bridge'><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='settling_tank_3'>
+      <static>true</static>
+      <pose>-56 22 0 0 0 0</pose>
+      <link name="link">
+        <visual name="wall"><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry><material><ambient>0.62 0.63 0.65 1</ambient><diffuse>0.62 0.63 0.65 1</diffuse></material></visual><collision name='c_wall'><pose>0 0 1.25 0 0 0</pose><geometry><cylinder><radius>9</radius><length>2.5</length></cylinder></geometry></collision>
+        <visual name="water"><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry><material><ambient>0.15 0.6 0.55 1</ambient><diffuse>0.15 0.6 0.55 1</diffuse></material></visual><collision name='c_water'><pose>0 0 2.51 0 0 0</pose><geometry><cylinder><radius>8.5</radius><length>0.02</length></cylinder></geometry></collision>
+        <visual name="bridge"><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry><material><ambient>0.9 0.75 0.2 1</ambient><diffuse>0.9 0.75 0.2 1</diffuse></material></visual><collision name='c_bridge'><pose>0 0 2.8 0 0 0</pose><geometry><box><size>18 1 0.4</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='plant_building'>
+      <static>true</static>
+      <pose>-12 -14 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 3 0 0 0</pose><geometry><box><size>10 6 6</size></box></geometry><material><ambient>0.85 0.8 0.7 1</ambient><diffuse>0.85 0.8 0.7 1</diffuse></material></visual><collision name='c_box'><pose>0 0 3 0 0 0</pose><geometry><box><size>10 6 6</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 6.1 0 0 0</pose><geometry><box><size>10.4 6.4 0.2</size></box></geometry><material><ambient>0.6 0.25 0.2 1</ambient><diffuse>0.6 0.25 0.2 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 6.1 0 0 0</pose><geometry><box><size>10.4 6.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name="access_road">
+      <static>true</static>
+      <pose>-51.5 -6 0 0 0 0</pose>
+      <link name="link">
+        <visual name="asphalt"><pose>0 0 0.01 0 0 0</pose><geometry><box><size>97 6 0.02</size></box></geometry><material><ambient>0.18 0.18 0.2 1</ambient><diffuse>0.18 0.18 0.2 1</diffuse></material></visual>
+        <visual name="stripe"><pose>0 0 0.021 0 0 0</pose><geometry><box><size>97 0.2 0.002</size></box></geometry><material><ambient>0.95 0.95 0.9 1</ambient><diffuse>0.95 0.95 0.9 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="lake">
+      <static>true</static>
+      <pose>1000 0 0 0 0 0</pose>
+      <link name="link">
+        <visual name="bank"><pose>0 0 0.005 0 0 0</pose><geometry><box><size>130 80 0.02</size></box></geometry><material><ambient>0.76 0.65 0.42 1</ambient><diffuse>0.76 0.65 0.42 1</diffuse></material></visual>
+        <visual name="water"><pose>0 0 0.02 0 0 0</pose><geometry><plane><normal>0 0 1</normal><size>120 70</size></plane></geometry><material><ambient>0.1 0.4 0.8 1</ambient><diffuse>0.1 0.45 0.85 1</diffuse><specular>0.6 0.6 0.7 1</specular></material><transparency>0.25</transparency></visual>
+      </link>
+    </model>
+    <model name='tree_1'>
+      <static>true</static>
+      <pose>40 26 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry><material><ambient>0.15 0.55 0.2 1</ambient><diffuse>0.15 0.55 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_2'>
+      <static>true</static>
+      <pose>70 -28 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 6.32 0 0 0</pose><geometry><sphere><radius>2.99</radius></sphere></geometry><material><ambient>0.15 0.6000000000000001 0.2 1</ambient><diffuse>0.15 0.6000000000000001 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 6.32 0 0 0</pose><geometry><sphere><radius>2.99</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_3'>
+      <static>true</static>
+      <pose>95 30 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 7.15 0 0 0</pose><geometry><cone><radius>3.12</radius><length>7.80</length></cone></geometry><material><ambient>0.15 0.65 0.2 1</ambient><diffuse>0.15 0.65 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 7.15 0 0 0</pose><geometry><cone><radius>3.12</radius><length>7.80</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_4'>
+      <static>true</static>
+      <pose>130 -25 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 5.50 0 0 0</pose><geometry><sphere><radius>2.60</radius></sphere></geometry><material><ambient>0.15 0.55 0.2 1</ambient><diffuse>0.15 0.55 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 5.50 0 0 0</pose><geometry><sphere><radius>2.60</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_5'>
+      <static>true</static>
+      <pose>160 27 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 6.32 0 0 0</pose><geometry><cone><radius>2.76</radius><length>6.90</length></cone></geometry><material><ambient>0.15 0.6000000000000001 0.2 1</ambient><diffuse>0.15 0.6000000000000001 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 6.32 0 0 0</pose><geometry><cone><radius>2.76</radius><length>6.90</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_6'>
+      <static>true</static>
+      <pose>190 -32 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 7.15 0 0 0</pose><geometry><sphere><radius>3.38</radius></sphere></geometry><material><ambient>0.15 0.65 0.2 1</ambient><diffuse>0.15 0.65 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 7.15 0 0 0</pose><geometry><sphere><radius>3.38</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_7'>
+      <static>true</static>
+      <pose>205 45 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry><material><ambient>0.15 0.55 0.2 1</ambient><diffuse>0.15 0.55 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_8'>
+      <static>true</static>
+      <pose>230 -48 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 6.32 0 0 0</pose><geometry><sphere><radius>2.99</radius></sphere></geometry><material><ambient>0.15 0.6000000000000001 0.2 1</ambient><diffuse>0.15 0.6000000000000001 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 6.32 0 0 0</pose><geometry><sphere><radius>2.99</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_9'>
+      <static>true</static>
+      <pose>275 -48 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 7.15 0 0 0</pose><geometry><cone><radius>3.12</radius><length>7.80</length></cone></geometry><material><ambient>0.15 0.65 0.2 1</ambient><diffuse>0.15 0.65 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 7.15 0 0 0</pose><geometry><cone><radius>3.12</radius><length>7.80</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_10'>
+      <static>true</static>
+      <pose>300 46 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 5.50 0 0 0</pose><geometry><sphere><radius>2.60</radius></sphere></geometry><material><ambient>0.15 0.55 0.2 1</ambient><diffuse>0.15 0.55 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 5.50 0 0 0</pose><geometry><sphere><radius>2.60</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_11'>
+      <static>true</static>
+      <pose>320 -30 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.3 0 0 0</pose><geometry><cylinder><radius>0.34</radius><length>4.60</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 6.32 0 0 0</pose><geometry><cone><radius>2.76</radius><length>6.90</length></cone></geometry><material><ambient>0.15 0.6000000000000001 0.2 1</ambient><diffuse>0.15 0.6000000000000001 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 6.32 0 0 0</pose><geometry><cone><radius>2.76</radius><length>6.90</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_12'>
+      <static>true</static>
+      <pose>20 -30 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.6 0 0 0</pose><geometry><cylinder><radius>0.39</radius><length>5.20</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 7.15 0 0 0</pose><geometry><sphere><radius>3.38</radius></sphere></geometry><material><ambient>0.15 0.65 0.2 1</ambient><diffuse>0.15 0.65 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 7.15 0 0 0</pose><geometry><sphere><radius>3.38</radius></sphere></geometry></collision>
+      </link>
+    </model>
+    <model name='tree_13'>
+      <static>true</static>
+      <pose>-15 30 0 0 0 0</pose>
+      <link name="link">
+        <visual name="trunk"><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry><material><ambient>0.45 0.28 0.12 1</ambient><diffuse>0.45 0.28 0.12 1</diffuse></material></visual><collision name='c_trunk'><pose>0 0 2.0 0 0 0</pose><geometry><cylinder><radius>0.30</radius><length>4.00</length></cylinder></geometry></collision>
+        <visual name="crown"><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry><material><ambient>0.15 0.55 0.2 1</ambient><diffuse>0.15 0.55 0.2 1</diffuse></material></visual><collision name='c_crown'><pose>0 0 5.50 0 0 0</pose><geometry><cone><radius>2.40</radius><length>6.00</length></cone></geometry></collision>
+      </link>
+    </model>
+    <model name='building_1'>
+      <static>true</static>
+      <pose>60 50 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 6.0 0 0 0</pose><geometry><box><size>14 10 12</size></box></geometry><material><ambient>0.88 0.85 0.78 1</ambient><diffuse>0.88 0.85 0.78 1</diffuse></material></visual><collision name='c_box'><pose>0 0 6.0 0 0 0</pose><geometry><box><size>14 10 12</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 12.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 12.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_2'>
+      <static>true</static>
+      <pose>90 55 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 11.0 0 0 0</pose><geometry><box><size>12 14 22</size></box></geometry><material><ambient>0.8 0.8 0.82 1</ambient><diffuse>0.8 0.8 0.82 1</diffuse></material></visual><collision name='c_box'><pose>0 0 11.0 0 0 0</pose><geometry><box><size>12 14 22</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 22.1 0 0 0</pose><geometry><box><size>12.4 14.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 22.1 0 0 0</pose><geometry><box><size>12.4 14.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_3'>
+      <static>true</static>
+      <pose>120 48 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 8.0 0 0 0</pose><geometry><box><size>16 10 16</size></box></geometry><material><ambient>0.93 0.87 0.72 1</ambient><diffuse>0.93 0.87 0.72 1</diffuse></material></visual><collision name='c_box'><pose>0 0 8.0 0 0 0</pose><geometry><box><size>16 10 16</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 16.1 0 0 0</pose><geometry><box><size>16.4 10.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 16.1 0 0 0</pose><geometry><box><size>16.4 10.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_4'>
+      <static>true</static>
+      <pose>150 58 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 12.5 0 0 0</pose><geometry><box><size>12 12 25</size></box></geometry><material><ambient>0.75 0.72 0.68 1</ambient><diffuse>0.75 0.72 0.68 1</diffuse></material></visual><collision name='c_box'><pose>0 0 12.5 0 0 0</pose><geometry><box><size>12 12 25</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 25.1 0 0 0</pose><geometry><box><size>12.4 12.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 25.1 0 0 0</pose><geometry><box><size>12.4 12.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_5'>
+      <static>true</static>
+      <pose>180 52 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 5.5 0 0 0</pose><geometry><box><size>14 10 11</size></box></geometry><material><ambient>0.88 0.85 0.78 1</ambient><diffuse>0.88 0.85 0.78 1</diffuse></material></visual><collision name='c_box'><pose>0 0 5.5 0 0 0</pose><geometry><box><size>14 10 11</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 11.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 11.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_6'>
+      <static>true</static>
+      <pose>215 70 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 9.5 0 0 0</pose><geometry><box><size>18 12 19</size></box></geometry><material><ambient>0.8 0.8 0.82 1</ambient><diffuse>0.8 0.8 0.82 1</diffuse></material></visual><collision name='c_box'><pose>0 0 9.5 0 0 0</pose><geometry><box><size>18 12 19</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 19.1 0 0 0</pose><geometry><box><size>18.4 12.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 19.1 0 0 0</pose><geometry><box><size>18.4 12.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_7'>
+      <static>true</static>
+      <pose>255 72 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 7.0 0 0 0</pose><geometry><box><size>14 10 14</size></box></geometry><material><ambient>0.93 0.87 0.72 1</ambient><diffuse>0.93 0.87 0.72 1</diffuse></material></visual><collision name='c_box'><pose>0 0 7.0 0 0 0</pose><geometry><box><size>14 10 14</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 14.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 14.1 0 0 0</pose><geometry><box><size>14.4 10.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name='building_8'>
+      <static>true</static>
+      <pose>290 68 0 0 0 0</pose>
+      <link name="link">
+        <visual name="box"><pose>0 0 10.5 0 0 0</pose><geometry><box><size>12 14 21</size></box></geometry><material><ambient>0.75 0.72 0.68 1</ambient><diffuse>0.75 0.72 0.68 1</diffuse></material></visual><collision name='c_box'><pose>0 0 10.5 0 0 0</pose><geometry><box><size>12 14 21</size></box></geometry></collision>
+        <visual name="roof"><pose>0 0 21.1 0 0 0</pose><geometry><box><size>12.4 14.4 0.2</size></box></geometry><material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material></visual><collision name='c_roof'><pose>0 0 21.1 0 0 0</pose><geometry><box><size>12.4 14.4 0.2</size></box></geometry></collision>
+      </link>
+    </model>
+  </world>
+</sdf>

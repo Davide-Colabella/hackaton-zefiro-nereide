@@ -1,0 +1,16 @@
+# file troppo grandi per GitHub (limite 100 MB) o duplicati
+sim.zip
+video*.mp4
+CONSEGNA_TEAM_26/26_video_prototype.mp4
+sim/video/
+sim/logs/*.ulg
+# materiale di terzi, non nostro
+A_Conceptual_Design_Methodology_for_e-VTOL_Aircraf.pdf
+ID.pdf
+VEDETTA*
+# sistema
+.DS_Store
+wget-log
+__pycache__/
+sim/logs/16_10_02.ulg
+TEAM_26_prima_della_sim_v2.pptx
